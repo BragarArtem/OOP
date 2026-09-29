@@ -4,6 +4,7 @@ public class SecondWindow : Form
     public SecondWindow()
     {
         ClientSize = new Size(800, 400);
+    
         Button yes = new Button();
         yes.Text = "Yes";
         yes.Location = new Point(100, 100);
