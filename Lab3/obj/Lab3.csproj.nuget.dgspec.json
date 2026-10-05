@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\OOP\\Lab2\\Lab2.csproj": {}
+    "C:\\OOP\\Lab3\\Lab3.csproj": {}
   },
   "projects": {
-    "c:\\OOP\\Lab2\\Lab2.csproj": {
+    "C:\\OOP\\Lab3\\Lab3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\OOP\\Lab2\\Lab2.csproj",
-        "projectName": "Lab2",
-        "projectPath": "c:\\OOP\\Lab2\\Lab2.csproj",
+        "projectUniqueName": "C:\\OOP\\Lab3\\Lab3.csproj",
+        "projectName": "Lab3",
+        "projectPath": "C:\\OOP\\Lab3\\Lab3.csproj",
         "packagesPath": "C:\\Users\\braga\\.nuget\\packages\\",
-        "outputPath": "c:\\OOP\\Lab2\\obj\\",
+        "outputPath": "C:\\OOP\\Lab3\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
