@@ -1,5 +1,3 @@
-using lab3;
-
 namespace Lab3;
 
 public partial class Form1 : Form
@@ -8,28 +6,25 @@ public partial class Form1 : Form
     private ToolStripMenuItem rectItem;
     private ToolStripMenuItem lineItem;
     private ToolStripMenuItem ellipseItem;
-    private void SelectShapeType(ShapeType type)
+    private Editor editor;
+    private void SelectShapeType(Editor.ShapeType type)
     {
-        pointItem.Checked = false;
-        rectItem.Checked = false;
-        lineItem.Checked = false;
-        ellipseItem.Checked = false;
         switch (type)
         {
-            case ShapeType.Point:
-            pointItem.Checked = true;
+            case Editor.ShapeType.Point:
+            Text = "Lab3-Point";
             break;
-            case ShapeType.Rectangle:
-            rectItem.Checked = true;
+            case Editor.ShapeType.Rectangle:
+            Text = "Lab3-Rectangle";
             break;
-            case ShapeType.Line:
-            lineItem.Checked = true;
+            case Editor.ShapeType.Line:
+            Text = "Lab3-Line";
             break;
-            case ShapeType.Ellipse:
-            ellipseItem.Checked = true;
+            case Editor.ShapeType.Ellipse:
+            Text = "Lab3-Ellipse";
             break;
         }
-        currentShapeType = type;
+        editor.SelectShapeType(type);
     }
     public Form1()
     {
@@ -46,6 +41,7 @@ public partial class Form1 : Form
         rectItem = new ToolStripMenuItem("Прямокутник");
         lineItem = new ToolStripMenuItem("Лінія");
         ellipseItem = new ToolStripMenuItem("Еліпс");
+        editor = new Editor();
 
         Controls.Add(menuStrip);
         MainMenuStrip = menuStrip;
@@ -59,73 +55,43 @@ public partial class Form1 : Form
 
         fileMenu.Click += (sender, e) => {MessageBox.Show("there is something, but not here");};
         helpMenu.Click += (sender, e) => {MessageBox.Show("Choose Objects option to draw some shapes");};
-        pointItem.Click += (sender, e) => {SelectShapeType(ShapeType.Point);};
-        lineItem.Click += (sender, e) => {SelectShapeType(ShapeType.Line);};
-        rectItem.Click += (sender, e) => {SelectShapeType(ShapeType.Rectangle);};
-        ellipseItem.Click += (sender, e) => {SelectShapeType(ShapeType.Ellipse);};
-        SelectShapeType(ShapeType.Point);
-        this.MouseDown += (sender, e) => 
+        pointItem.Click += (sender, e) => {SelectShapeType(Editor.ShapeType.Point);};
+        lineItem.Click += (sender, e) => {SelectShapeType(Editor.ShapeType.Line);};
+        rectItem.Click += (sender, e) => {SelectShapeType(Editor.ShapeType.Rectangle);};
+        ellipseItem.Click += (sender, e) => {SelectShapeType(Editor.ShapeType.Ellipse);};
+        SelectShapeType(Editor.ShapeType.Point);
+        this.MouseDown += Form_MouseDown;
+        this.MouseMove += Form_MouseMove;
+        this.MouseUp += Form_MouseUp;
+        this.Paint += Form_Paint;
+    }
+    private void Form_MouseDown(object? sender, MouseEventArgs e)
+    {
+        editor.OnMouseDown(e.Location);
+    }
+    private void Form_MouseMove(object? sender, MouseEventArgs e)
+    {
+        if (editor.OnMouseMove(e.Location))
         {
-            isDrawing = true;
-            currentStart = e.Location;
-            currentEnd = e.Location;
-        };
-        this.MouseUp += (sender, e) => 
+            Invalidate();
+        }
+    }
+    private void Form_MouseUp(object? sender, MouseEventArgs e)
+    {
+        switch (editor.OnMouseUp())
         {
-            isDrawing = false;
-            if (ShapeCount >= shapes.Length)
-            {
-                MessageBox.Show("reached max amount of shapes on the sheet (" + shapes.Length + ")");
-            }
-            else
-            {
-                Shape newShape;
-                switch (currentShapeType)
-                {
-                    case ShapeType.Point: 
-                        newShape = new PointShape();
-                    break;
-                    case ShapeType.Line: 
-                        newShape = new LineShape();
-                    break;
-                    case ShapeType.Rectangle: 
-                        newShape = new RectShape();
-                    break;
-                    case ShapeType.Ellipse: 
-                        newShape = new EllipseShape();
-                    break;
-                    default:
-                        throw new InvalidOperationException("unknown shape");
-                }
-                newShape.StartPoint = currentStart;
-                newShape.EndPoint = currentEnd;
-                shapes[ShapeCount] = newShape;
-                ShapeCount++;
-                this.Invalidate();
-            }
-        };
-        this.MouseMove += (sender, e) =>
-        {
-            if (!isDrawing) return;
-            currentEnd = e.Location;
-            this.Invalidate();
-        };
-        this.Paint += (sender, e) =>
-        {
-            Graphics g = e.Graphics;
-            for (int i = 0; i < ShapeCount; i++)
-            {
-                shapes[i].Show(g);
-            }
-            if (isDrawing)
-            {
-                Pen tempPen = new Pen(Color.Blue);
-                int width = Math.Abs(currentEnd.X - currentStart.X);
-                int height = Math.Abs(currentEnd.Y - currentStart.Y);
-                int x = Math.Min(currentStart.X, currentEnd.X);
-                int y = Math.Min(currentStart.Y, currentEnd.Y);
-                g.DrawRectangle(tempPen, x, y, width, height);
-            }
-        };
+            case Editor.OnMouseUpResult.ShapeAdded:
+                Invalidate();
+            break;
+            case Editor.OnMouseUpResult.ArrayIsFull:
+                MessageBox.Show("Shapes Array is full");
+                Invalidate();
+            break;
+        }
+    }
+    private void Form_Paint(object? sender, PaintEventArgs e)
+    {
+        Graphics g = e.Graphics;
+        editor.DrawShapes(g);
     }
 }
