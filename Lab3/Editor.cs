@@ -17,7 +17,11 @@ public class Editor
     }
     private ShapeType currentShapeType = ShapeType.Point;
     private const int MaxShapes = 103;
-    private Shape[] shapes = new Shape[MaxShapes];
+    private Shape[] shapes;
+    public Editor()
+    {
+        shapes = new Shape[MaxShapes];
+    }
     private int shapeCount = 0;
     private bool isDrawing = false;
     private Point currentStart;
