@@ -8,7 +8,7 @@ public class EllipseShape : Shape
         int radY = Math.Abs(EndPoint.Y - StartPoint.Y);
         int x = Math.Min(StartPoint.X, EndPoint.X);
         int y = Math.Min(StartPoint.Y, EndPoint.Y);
-        g.FillEllipse(FillBrush, x, y, radX, radY);
+        if(!IsPreview) {g.FillEllipse(FillBrush, x, y, radX, radY);}
         g.DrawEllipse(OutlinePen, x, y, radX, radY);
     }
 }

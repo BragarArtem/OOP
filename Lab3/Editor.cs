@@ -95,15 +95,12 @@ public class Editor
     }
     private void DrawTemp(Graphics g)
     {
-        int width = Math.Abs(currentEnd.X - currentStart.X);
-        int height = Math.Abs(currentEnd.Y - currentStart.Y);
-        int x = Math.Min(currentStart.X, currentEnd.X);
-        int y = Math.Min(currentStart.Y, currentEnd.Y);
-        using(Pen tempPen = new Pen(Color.Black))
-        {
-            tempPen.DashStyle = DashStyle.Dash;
-            g.DrawRectangle(tempPen, x, y, width, height);
-        } 
+        Shape previewShape = CreateShape();
+        previewShape.IsPreview = true;
+        previewShape.StartPoint = currentStart;
+        previewShape.EndPoint = currentEnd;
+        previewShape.OutlinePen.DashStyle = DashStyle.Dash;
+        previewShape.Show(g);
     }
     public  void SelectShapeType(ShapeType type)
     {
