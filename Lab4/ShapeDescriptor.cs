@@ -7,6 +7,7 @@ public static class ShapesDescriptor
         new Descriptor("Лінія" ,IconShapes.CreateLineIcon(), () => new LineShape()),
         new Descriptor("Прямокутник",IconShapes.CreateRectIcon(), () => new RectShape()),
         new Descriptor("Еліпс", IconShapes.CreateEllipseIcon(), () => new EllipseShape()),
-        new Descriptor("Лінія з еліпсами у формі кола на обох кінцях цієї лінії", IconShapes.CreateALineWithEllipsesInTheFormOfCirclesAtBothEndsOfThisLine(), () => new ALineWithEllipsesInTheFormOfCirclesAtBothEndsOfThisLineShape())
+        new Descriptor("Лінія з еліпсами у формі кола на обох кінцях цієї лінії", IconShapes.CreateALineWithEllipsesInTheFormOfCirclesAtBothEndsOfThisLineIcon(), () => new ALineWithEllipsesInTheFormOfCirclesAtBothEndsOfThisLineShape()),
+        new Descriptor("Куб", IconShapes.CreateCubeIcon(), () => new CubeShape())
     };
 }

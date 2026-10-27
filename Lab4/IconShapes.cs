@@ -41,7 +41,7 @@ static class IconShapes
         }
         return lineBmp;
     }
-    public static Bitmap CreateALineWithEllipsesInTheFormOfCirclesAtBothEndsOfThisLine()
+    public static Bitmap CreateALineWithEllipsesInTheFormOfCirclesAtBothEndsOfThisLineIcon()
     {
         Bitmap aLineWithEllipsesInTheFormOfCirclesAtBothEndsOfThisLineBmp = new Bitmap(24,24);
         using (Graphics g = Graphics.FromImage(aLineWithEllipsesInTheFormOfCirclesAtBothEndsOfThisLineBmp))
@@ -52,5 +52,20 @@ static class IconShapes
             g.DrawEllipse(pen, 17, 17, 6, 6); 
         }
         return aLineWithEllipsesInTheFormOfCirclesAtBothEndsOfThisLineBmp;
+    }
+    public static Bitmap CreateCubeIcon()
+    {
+        Bitmap CubeBmp = new Bitmap(24,24);
+        using(Graphics g = Graphics.FromImage(CubeBmp))
+        using(Pen pen = new Pen(Color.Black))
+        {
+            g.DrawRectangle(pen, 0, 6, 12, 12);
+            g.DrawRectangle(pen, 6, 0, 12, 12);
+            g.DrawLine(pen, 0, 6, 6, 0);
+            g.DrawLine(pen, 12, 6, 18, 0);
+            g.DrawLine(pen, 0, 18, 6, 12);
+            g.DrawLine(pen, 12, 18, 18, 12);
+        }
+        return CubeBmp;
     }
 }
