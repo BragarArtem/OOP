@@ -2,13 +2,6 @@ namespace Lab4;
 using System.Drawing.Drawing2D;
 public class Editor : IDisposable
 {
-    public enum ShapeType
-    {
-        Point, 
-        Line,
-        Rectangle,
-        Ellipse
-    }
     public enum OnMouseUpResult
     {
         ShapeAdded,
