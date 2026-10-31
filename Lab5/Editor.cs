@@ -151,5 +151,14 @@ public class Editor : IDisposable
         shapes[shapeCount] = shape;
         shapeCount++;
         return true;
-    }    
+    }
+    public void Clear()
+    {
+        for(int i = 0; i < shapeCount; i++)
+        {
+            shapes[i].Dispose();
+        }
+        shapeCount = 0;
+        selectedRow = null;
+    }
 }

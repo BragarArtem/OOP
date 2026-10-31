@@ -210,6 +210,7 @@ public partial class Form1 : Form
                 return;
             }
             string[] lines = File.ReadAllLines(dialog.FileName);
+            editor.Clear();
             foreach(string line in lines)
             {
                 string[] parts = line.Split(',');
