@@ -6,6 +6,12 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <OutputPath>..\bin\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
-
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Object2\Object2.csproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\Object3\Object3.csproj" ReferenceOutputAssembly="false" />
+  </ItemGroup>
 </Project>

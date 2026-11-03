@@ -1,0 +1,15 @@
+C:\OOP\Lab6\bin\Object2.exe
+C:\OOP\Lab6\bin\Object2.deps.json
+C:\OOP\Lab6\bin\Object2.runtimeconfig.json
+C:\OOP\Lab6\bin\Object2.dll
+C:\OOP\Lab6\bin\Object2.pdb
+C:\OOP\Lab6\Object2\obj\Debug\Object2.GeneratedMSBuildEditorConfig.editorconfig
+C:\OOP\Lab6\Object2\obj\Debug\Object2.AssemblyInfoInputs.cache
+C:\OOP\Lab6\Object2\obj\Debug\Object2.AssemblyInfo.cs
+C:\OOP\Lab6\Object2\obj\Debug\Object2.csproj.CoreCompileInputs.cache
+C:\OOP\Lab6\Object2\obj\Debug\Object2.sourcelink.json
+C:\OOP\Lab6\Object2\obj\Debug\Object2.dll
+C:\OOP\Lab6\Object2\obj\Debug\refint\Object2.dll
+C:\OOP\Lab6\Object2\obj\Debug\Object2.pdb
+C:\OOP\Lab6\Object2\obj\Debug\Object2.genruntimeconfig.cache
+C:\OOP\Lab6\Object2\obj\Debug\ref\Object2.dll

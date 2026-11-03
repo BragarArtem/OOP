@@ -1,4 +1,5 @@
 namespace Lab6;
+using System.Globalization;
 public class ParametersDialog : Form
 {
     private TextBox countBox = new TextBox();
@@ -61,11 +62,11 @@ public class ParametersDialog : Form
         {
             return "n must be an integer above zero";
         } 
-        else if(!double.TryParse(minBox.Text, out min))
+        else if(!TryParseDouble(minBox.Text, out min))
         {
             return "Min must be a number";
         } 
-        else if(!double.TryParse(maxBox.Text, out max))
+        else if(!TryParseDouble(maxBox.Text, out max))
         {
             return "Max must be a number";
         } 
@@ -89,5 +90,9 @@ public class ParametersDialog : Form
         MinValue = min;
         MaxValue = max;
         DialogResult = DialogResult.Yes;
+    }
+    private bool TryParseDouble(string text, out double number)
+    {
+        return double.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out number); 
     }
 }

@@ -1,0 +1,15 @@
+C:\OOP\Lab6\bin\Object3.exe
+C:\OOP\Lab6\bin\Object3.deps.json
+C:\OOP\Lab6\bin\Object3.runtimeconfig.json
+C:\OOP\Lab6\bin\Object3.dll
+C:\OOP\Lab6\bin\Object3.pdb
+C:\OOP\Lab6\Object3\obj\Debug\Object3.GeneratedMSBuildEditorConfig.editorconfig
+C:\OOP\Lab6\Object3\obj\Debug\Object3.AssemblyInfoInputs.cache
+C:\OOP\Lab6\Object3\obj\Debug\Object3.AssemblyInfo.cs
+C:\OOP\Lab6\Object3\obj\Debug\Object3.csproj.CoreCompileInputs.cache
+C:\OOP\Lab6\Object3\obj\Debug\Object3.sourcelink.json
+C:\OOP\Lab6\Object3\obj\Debug\Object3.dll
+C:\OOP\Lab6\Object3\obj\Debug\refint\Object3.dll
+C:\OOP\Lab6\Object3\obj\Debug\Object3.pdb
+C:\OOP\Lab6\Object3\obj\Debug\Object3.genruntimeconfig.cache
+C:\OOP\Lab6\Object3\obj\Debug\ref\Object3.dll
