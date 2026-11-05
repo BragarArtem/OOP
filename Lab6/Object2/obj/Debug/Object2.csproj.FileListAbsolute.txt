@@ -13,3 +13,5 @@ C:\OOP\Lab6\Object2\obj\Debug\refint\Object2.dll
 C:\OOP\Lab6\Object2\obj\Debug\Object2.pdb
 C:\OOP\Lab6\Object2\obj\Debug\Object2.genruntimeconfig.cache
 C:\OOP\Lab6\Object2\obj\Debug\ref\Object2.dll
+C:\OOP\Lab6\Object2\obj\Debug\Object2.csproj.AssemblyReference.cache
+C:\OOP\Lab6\Object2\obj\Debug\Object2.csproj.Up2Date

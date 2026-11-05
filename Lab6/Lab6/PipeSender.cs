@@ -3,12 +3,14 @@ using System.IO.Pipes;
 
 internal static class PipeSender
 {
-    public static void Send(string channelName, string channelMessage)
+    public static async Task<string?> Send(string channelName, string channelMessage)
     {
-        using NamedPipeClientStream stream = new NamedPipeClientStream(".", channelName, PipeDirection.Out);
-        stream.Connect(5000);
+        using NamedPipeClientStream stream = new NamedPipeClientStream(".", channelName, PipeDirection.InOut);
+        await stream.ConnectAsync(5000);
+        using StreamReader reader = new StreamReader(stream);
         using StreamWriter writer = new StreamWriter(stream);
         writer.AutoFlush = true;
-        writer.WriteLine(channelMessage);
+        await writer.WriteLineAsync(channelMessage);
+        return await reader.ReadLineAsync();
     }
 }

@@ -2,4 +2,5 @@
   <Project Path="Lab6/Lab6.csproj" />
   <Project Path="Object2/Object2.csproj" />
   <Project Path="Object3/Object3.csproj" />
+  <Project Path="Shared/Shared.csproj" />
 </Solution>

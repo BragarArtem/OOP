@@ -4,39 +4,19 @@ public class ChildProgram
 {
     private readonly string programName;
     private Process? process = null;
-    public IntPtr WindowHandle
-    {
-        get
-        {
-            if(process == null)
-            {
-                return IntPtr.Zero;
-            }
-            else
-            {
-                process.Refresh();
-                return process.MainWindowHandle;
-            }
-        }
-    }
     public ChildProgram(string name)
     {
         programName = name;
     }
     public void Start()
     {
-        if(process != null && !process.HasExited){return;};
+        if(process != null && !process.HasExited){return;}
         Process[] runningProcesses = Process.GetProcessesByName(programName);
-        bool isAlreadyRunning = false;
-        if(runningProcesses.Length > 0)
-        {
-            isAlreadyRunning = true;
-        }
         for(int i = 1; i < runningProcesses.Length; i++)
         {
             runningProcesses[i].Dispose();
         }
-        if(isAlreadyRunning)
+        if(runningProcesses.Length > 0)
         {
             process = runningProcesses[0];
             return;

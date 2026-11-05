@@ -85,6 +85,7 @@ public class ParametersDialog : Form
         if(error != null)
         {
             MessageBox.Show(error);
+            return;
         }
         CountValue = count;
         MinValue = min;

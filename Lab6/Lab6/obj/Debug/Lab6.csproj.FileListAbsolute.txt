@@ -19,3 +19,5 @@ C:\OOP\Lab6\Lab6\obj\Debug\refint\Lab6.dll
 C:\OOP\Lab6\Lab6\obj\Debug\Lab6.pdb
 C:\OOP\Lab6\Lab6\obj\Debug\Lab6.genruntimeconfig.cache
 C:\OOP\Lab6\Lab6\obj\Debug\ref\Lab6.dll
+C:\OOP\Lab6\Lab6\obj\Debug\Lab6.csproj.AssemblyReference.cache
+C:\OOP\Lab6\Lab6\obj\Debug\Lab6.csproj.Up2Date

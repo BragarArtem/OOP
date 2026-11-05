@@ -1,0 +1,12 @@
+C:\OOP\Lab6\bin\Shared.deps.json
+C:\OOP\Lab6\bin\Shared.dll
+C:\OOP\Lab6\bin\Shared.pdb
+C:\OOP\Lab6\Shared\obj\Debug\Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\OOP\Lab6\Shared\obj\Debug\Shared.AssemblyInfoInputs.cache
+C:\OOP\Lab6\Shared\obj\Debug\Shared.AssemblyInfo.cs
+C:\OOP\Lab6\Shared\obj\Debug\Shared.csproj.CoreCompileInputs.cache
+C:\OOP\Lab6\Shared\obj\Debug\Shared.sourcelink.json
+C:\OOP\Lab6\Shared\obj\Debug\Shared.dll
+C:\OOP\Lab6\Shared\obj\Debug\refint\Shared.dll
+C:\OOP\Lab6\Shared\obj\Debug\Shared.pdb
+C:\OOP\Lab6\Shared\obj\Debug\ref\Shared.dll

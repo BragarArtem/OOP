@@ -13,5 +13,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Object2\Object2.csproj" ReferenceOutputAssembly="false" />
     <ProjectReference Include="..\Object3\Object3.csproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>

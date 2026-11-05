@@ -1,5 +1,4 @@
 namespace Lab6;
-using System.IO.Pipes;
 using System.Globalization;
 
 public partial class Form1 : Form
@@ -17,15 +16,13 @@ public partial class Form1 : Form
         MenuStrip menuStrip = new MenuStrip();
         ToolStripMenuItem workMenuItem = new ToolStripMenuItem("Робота");
         ToolStripMenuItem runMenuItem = new ToolStripMenuItem("Запустити");
-        ToolStripMenuItem testMenuItem = new ToolStripMenuItem("Тест");
         Controls.Add(menuStrip);
         MainMenuStrip = menuStrip;
         menuStrip.Items.Add(workMenuItem);
         workMenuItem.DropDownItems.Add(runMenuItem);
-        workMenuItem.DropDownItems.Add(testMenuItem);
         runMenuItem.Click += RunMenuItem_Click;
     }
-    private void RunMenuItem_Click(object? sender, EventArgs e)
+    private async void RunMenuItem_Click(object? sender, EventArgs e)
     {
         using (ParametersDialog parametersDialog = new ParametersDialog())
         {
@@ -35,11 +32,11 @@ public partial class Form1 : Form
                 {
                     childProgram.Start();
                     string result = BuildMessage(parametersDialog);
-                    PipeSender.Send(PipeName, result);
+                    string? answer = await PipeSender.Send(PipeName, result);
                 }
                 catch (TimeoutException)
                 {
-                    MessageBox.Show("Client is not responding");
+                    MessageBox.Show("Object2 не відповідає");
                 }
             }
         }
