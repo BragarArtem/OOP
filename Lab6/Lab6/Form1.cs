@@ -3,13 +3,21 @@ using System.Globalization;
 
 public partial class Form1 : Form
 {
-    private const string PipeName = "Lab6.Object2";
-    private ChildProgram childProgram;
+    private const string Object2PipeName = "Lab6.Object2";
+    private const string Object3PipeName = "Lab6.Object3";
+    private const int Lab6Height = 100;
+    private ChildProgram object2;
+    private ChildProgram object3;
     public Form1()
     {
         InitializeComponent();
+        Rectangle area = Screen.FromControl(this).WorkingArea;
+        StartPosition = FormStartPosition.Manual;
+        Bounds = new Rectangle(area.Left, area.Top, area.Width, Lab6Height);
         CreateMenu();
-        childProgram = new ChildProgram("Object2");
+        object2 = new ChildProgram("Object2");
+        object3 = new ChildProgram("Object3");
+        this.FormClosed += Form_Closed;
     }
     private void CreateMenu()
     {
@@ -22,6 +30,11 @@ public partial class Form1 : Form
         workMenuItem.DropDownItems.Add(runMenuItem);
         runMenuItem.Click += RunMenuItem_Click;
     }
+    private void Form_Closed(object? sender, EventArgs e)
+    {
+        object2.Close();
+        object3.Close();
+    }
     private async void RunMenuItem_Click(object? sender, EventArgs e)
     {
         using (ParametersDialog parametersDialog = new ParametersDialog())
@@ -30,13 +43,27 @@ public partial class Form1 : Form
             {
                 try
                 {
-                    childProgram.Start();
-                    string result = BuildMessage(parametersDialog);
-                    string? answer = await PipeSender.Send(PipeName, result);
+                    string message = BuildMessage(parametersDialog);
+                    bool object2Ok = await ExchangeAsync(object2, Object2PipeName, message);
+                    if (!object2Ok)
+                    {
+                        MessageBox.Show("Object2 повернув помилку");
+                        return;
+                    }
+                    bool object3Ok = await ExchangeAsync(object3, Object3PipeName, "READ");
+                    if (!object3Ok)
+                    {
+                        MessageBox.Show("Object3 повернув помилку");
+                        return;
+                    }
                 }
                 catch (TimeoutException)
                 {
-                    MessageBox.Show("Object2 не відповідає");
+                    MessageBox.Show("Одна з програм не відповіла");
+                }
+                catch (IOException)
+                {
+                    MessageBox.Show("Зв'язок з програмою перервано");
                 }
             }
         }
@@ -47,5 +74,11 @@ public partial class Form1 : Form
         string minValue = parametersDialog.MinValue.ToString(CultureInfo.InvariantCulture);
         string maxValue = parametersDialog.MaxValue.ToString(CultureInfo.InvariantCulture);
         return string.Join(";", countValue, minValue, maxValue);
+    }
+    private async Task<bool> ExchangeAsync(ChildProgram childProgram, string channelName, string message)
+    {
+        childProgram.Start();
+        string? answer = await PipeSender.AsyncSend(channelName, message);
+        return answer == "OK";
     }
 }

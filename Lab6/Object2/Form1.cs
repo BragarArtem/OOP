@@ -7,30 +7,41 @@ using System.Runtime.InteropServices;
 public partial class Form1 : Form
 {
     private const string PipeName = "Lab6.Object2";
+    private const int Lab6Height = 100;
     private VectorTable vectorTable = new VectorTable();
     public Form1()
     {
         InitializeComponent();
         Controls.Add(vectorTable);
-        ClientSize = new Size(520, 400);
+        Rectangle area = Screen.FromControl(this).WorkingArea;
+        StartPosition = FormStartPosition.Manual;
+        Bounds = new Rectangle(area.Left, area.Top + Lab6Height, area.Width / 2, area.Height - Lab6Height);
         this.Load += Form_Load;
     }
     private async void Form_Load(object? sender, EventArgs e)
     {
         while (true)
         {
-            using NamedPipeServerStream stream = new NamedPipeServerStream(PipeName, PipeDirection.InOut);
-            await stream.WaitForConnectionAsync();
-            using StreamReader reader = new StreamReader(stream);
-            using StreamWriter writer = new StreamWriter(stream);
-            writer.AutoFlush = true;
-            string? line = await reader.ReadLineAsync();
-            string answer = "ERROR";
-            if(line != null && ProcessMessage(line))
+            try
             {
-                answer = "OK";
+                using NamedPipeServerStream stream = new NamedPipeServerStream(PipeName, PipeDirection.InOut);
+                await stream.WaitForConnectionAsync();
+                using StreamReader reader = new StreamReader(stream);
+                using StreamWriter writer = new StreamWriter(stream);
+                writer.AutoFlush = true;
+                string? line = await reader.ReadLineAsync();
+                string answer = "ERROR";
+                if(line != null && ProcessMessage(line))
+                {
+                    answer = "OK";
+                }
+                await writer.WriteLineAsync(answer);
             }
-            await writer.WriteLineAsync(answer);
+            catch (IOException)
+            {
+                await Task.Delay(100);
+            }
+            
         }
     }
     private bool ProcessMessage(string message)

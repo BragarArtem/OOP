@@ -3,7 +3,7 @@ using System.IO.Pipes;
 
 internal static class PipeSender
 {
-    public static async Task<string?> Send(string channelName, string channelMessage)
+    public static async Task<string?> AsyncSend(string channelName, string channelMessage)
     {
         using NamedPipeClientStream stream = new NamedPipeClientStream(".", channelName, PipeDirection.InOut);
         await stream.ConnectAsync(5000);
